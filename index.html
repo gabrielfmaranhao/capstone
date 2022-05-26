@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +7,40 @@
     <title>Capstone</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="index.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <header>
     <h1 id="logo">Weartake</h1>
-    <nav>
+    <nav id="navHeader">
         <ul id="navegaçãoHeader">
-            <li class="menuPropiedades"><strong>Todos</strong></li>    
-            <li class="menuPropiedades">Acessórios</li>
-            <li class="menuPropiedades">Calçados</li>
-            <li class="menuPropiedades">Camisetas</li>
+            <button id="buttonTodos" class="menuPropiedades"><strong>Todos</strong></button>
+            <button id="buttonAcessorios" class="menuPropiedades">Acessórios</button>
+            <button id="camisetas" class="menuPropiedades">Camisetas</button>
+            <button id="sapatos" class="menuPropiedades">Sapatos</button>
         </ul>
     </nav>
 </header>
 <body>
-    <main>
-        <section id="camisetas"></section>
-        <section id="calcados"></section>
-        <section id="acessorios"></section>
-    </main>
-    <aside id="containerAside">
-        <nav><input id="pesquisar" type="text" placeholder="Digite aqui sua pesquisa"> 
-             <button id="botaoPesquisar">Pesquisar</button>
-        </nav>
-        <button id="carrinhoDeCompras">Carrinho De Compras</button>
-    </aside>
+    <div id="separarConteudo">
+        <main id="containerTodo">
+            <div id="vitrine">
+                <ul id="todasUl">
+                </ul>
+            </div>
+        </main>
+        <aside id="containerAside">
+                <nav id="navPesquisar"><input id="pesquisar" type="text" placeholder="Digite aqui sua pesquisa"> 
+                    <button id="botaoPesquisar">Pesquisar</button>
+                </nav>
+                <div id="containerCarrinhoDeCompras">
+                    <div id="carrinhoDeCompras">Carrinho de compras</div>
+                    <div id="adicionandoProdutos">
+                    <p id="carrinhoVazio"><strong>Carrinho vazio</strong></p>
+                    <p id="adicioneItens">Adicione itens</p>
+                    </div>  
+                </div>   
+        </aside>
+    </div> 
 </body>
 </html>

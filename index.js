@@ -1,115 +1,231 @@
 const produtos = [
-{
-    nome     :"camiseta1",
-    categoria:"camiseta",
-    preco    : 9.99,
-    img      :"./imagens/camisetaLonga.png",
-    descricao:"descrição do produto"
-},
-{
-    nome     :"camiseta1",
-    categoria:"camiseta",
-    preco    :10,
-    img      :"./imagens/camisetaLonga.png",
-    descricao:"descrição do produto"
-},
-{
-    nome     :"camiseta1",
-    categoria:"camiseta",
-    preco    : 9.99,
-    img      :"./imagens/camisetaLonga.png",
-    descricao:"descrição do produto"
-},
-{
-    nome     :"camiseta1",
-    categoria:"camiseta",
-    preco    :10,
-    img      :"./imagens/camisetaLonga.png",
-    descricao:"descrição do produto"
-}
-// {
-//     nome     :"camiseta1",
-//     categoria:"camiseta",
-//     preco    :10,
-//     img      :"link",
-//     descricao:"descrição do produto"
-// },
-// {
-//     nome     :"camiseta1",
-//     categoria:"camiseta",
-//     preco    :10,
-//     img      :"link",
-//     descricao:"descrição do produto"
-// },
-// {
-//     nome     :"camiseta1",
-//     categoria:"camiseta",
-//     preco    :10,
-//     img      :"link",
-//     descricao:"descrição do produto"
-// },
-// {
-//     nome     :"camiseta1",
-//     categoria:"camiseta",
-//     preco    :10,
-//     img      :"link",
-//     descricao:"descrição do produto"
-// },
-]
+    {
+      id: 1,
+      img: "../img/jaqueta.svg",
+      nameItem: "Lightweight Jacket",
+      description:
+        "Adicione um pouco de energia ao seu guarda-roupa de inverno com esta jaqueta vibrante...",
+      value: 100,
+      addCart: "Adicionar ao carrinho",
+      tag: "Camisetas",
+    },
+    {
+      id: 2,
+      img: "../img/gorro.svg",
+      nameItem: "Black Hat",
+      description:
+        "O gorro Next.js chegou! Esta beldade bordada tem um ajuste confortável que garante que...",
+      value: 100,
+      addCart: "Adicionar ao carrinho",
+      tag: "Acessórios",
+    },
+    {
+      id: 3,
+      img: "../img/mascara.svg",
+      nameItem: "Mask",
+      description:
+        "Esta máscara facial durável é feita de duas camadas de tecido tratado e possui presilhas...",
+      value: 40,
+      addCart: "Adicionar ao carrinho",
+      tag: "Acessórios",
+    },
+    {
+      id: 4,
+      img: "../img/camiseta_preta.svg",
+      nameItem: "T-Shirt",
+      description:
+        "Esta t-shirt é imprescindível no seu guarda-roupa, combinando o caimento intemporal de...",
+      value: 100,
+      addCart: "Adicionar ao carrinho",
+      tag: "Camisetas",
+    },
+    {
+      id: 5,
+      img: "../img/camiseta_branca.svg",
+      nameItem: "Short-Sleeve T-Shirt",
+      description:
+        "Agora você encontrou a camiseta básica do seu guarda-roupa. É feito de um mais grosso...",
+      value: 100,
+      addCart: "Adicionar ao carrinho",
+      tag: "Camisetas",
+    },
+    {
+      id: 6,
+      img: "../img/moletom.svg",
+      nameItem: "Champion Packable Jacket",
+      description:
+        "Proteja-se dos elementos com esta jaqueta embalável Champion. Esta jaqueta de poliést...",
+      value: 100,
+      addCart: "Adicionar ao carrinho",
+      tag: "Camisetas",
+    },
+  ];
+function percorerListProdutos(arrayDeProdutos){
+   arrayDeProdutos.forEach(produto => {
+     criarLi(produto)
+   });
+ };
+ percorerListProdutos(produtos) 
+ function criarLi(produto){
+   const liCard = document.createElement("li");
+   liCard.classList.add("card");
+   const ul     = document.getElementById("todasUl");
+   ul.appendChild(liCard);
+//-----------------------------------------------------
+   const divImg = criarDivImg(produto);
+   const divMainCard = criarDivMainCard(produto);
+   liCard.append(divImg,divMainCard);
+//-----------------------------------------------------
+//-----------------------------------------------------
+ };
+ function criarDivImg(produto){
+   const divImg = document.createElement("div");
+   divImg.classList.add("imagemDoProduto");
+   const imgCardGrande = document.createElement("img");
+   imgCardGrande.classList.add("imagemDoProduto");
+   imgCardGrande.src   =`${produto.img}`;
+   imgCardGrande.alt   = `${produto.nameItem}`;
+   divImg.appendChild(imgCardGrande);
+   return divImg
+ };
+ function criarDivMainCard(produto){
+   const divMain = document.createElement("div");
+   const mainCard = criarMainCard(produto);
+   divMain.appendChild(mainCard);
+   return divMain
+ };
+ function criarMainCard(produto){
+   const mainCard           = document.createElement("main");
+   mainCard.classList.add("mainProduto");
+   const divCategoria       = criarDivCategora(produto);
+   const criarTitulos        = criartitulo(produto);
+   const descricaoProdutos   = descricaoProduto(produto);
+   const preco              = precoProduto(produto);
+   const button             = buttonAdicionar(produto);
+   mainCard.append(divCategoria,criarTitulos,descricaoProdutos,preco,button)
+   return mainCard
+ };
+ function criarDivCategora(produto){
+  const divCategoria = document.createElement("div");
+  divCategoria.classList.add("categoriaDoCard");
+  divCategoria.innerText =`${produto.tag}`;
+  return divCategoria
+ };
+ function criartitulo(produto){
+   const h3Card       = document.createElement("h3");
+   h3Card.classList.add("nomeProduto");
+   h3Card.innerText   = `${produto.nameItem}`;
+   return h3Card
+ };
+ function descricaoProduto(produto){
+   const p   =document.createElement("p");
+   p.classList.add("descricaoProduto");
+   p.innerText = `${produto.description}`;
+   return p 
+ };
+ function precoProduto(produto){
+   const preco = document.createElement("strong");
+   preco.classList.add("precoProdutoCard");
+   preco.innerText = `${produto.value}`;
+   return preco
+ };
+ function buttonAdicionar(produto){
+   const buttonAdicionar = document.createElement("button");
+   buttonAdicionar.classList.add("botaoAdicionarCard");
+   buttonAdicionar.innerText="Adicionar ao Carrinho";
+   return buttonAdicionar
+ };
 
-const body    = document.body
-const main    = document.querySelector("main");
-const sectionCamisetas  = document.getElementById("camisetas");
-const sectionCalcados   = document.getElementById("calcados");
-const sectionAcessorios = document.getElementById("acessorios");
-const section = document.getElementsByTagName("section");
 
-function criarUl(sessao){
-     for(let i = 0;i<sessao.length;i++){
-         const ul  =document.createElement("ul");
-         ul.id     =`ul${i}`;
-         section[i].appendChild(ul);
-        }
-}
-criarUl(section);
 
-const ul0 = document.getElementById("ul0");
-const ul1 = document.getElementById("ul1");
-const ul2 = document.getElementById("ul2");
 
-function criarCard(produtos){
-    for(let i = 0;i<produtos.length;i++){
-        if(produtos[i].categoria == "camiseta"){
-            const produtoLi        = document.createElement("li");
-            produtoLi.className    ="card"
-            const produtoimg       = document.createElement("img");
-            produtoimg.src         =`${produtos[i].img}`;
-            produtoimg.alt         =`${produtos[i].nome}`;
-            produtoimg.className   ="imagemDoProduto";
-            const mainProduto      = document.createElement("main");
-            mainProduto.className  ="mainProduto";
-            const produtoh3        = document.createElement("h3");
-            produtoh3.className    ="nomeProduto";
-            produtoh3.innerText    =`${produtos[i].nome}`;
-            const produtoDescricao = document.createElement("p");
-            produtoDescricao.classname = "descricaoProduto";
-            produtoDescricao.innerText =`${produtos[i].descricao}`;
-            const precoProduto     = document.createElement("strong");
-            precoProduto.className     ="precoProdutoCard";
-            precoProduto.innerText     =`${produtos[i].preco}`;
-            const botaoAdicionar   = document.createElement("button");
-            botaoAdicionar.className   ="botaoAdicionarCard";
-            botaoAdicionar.innerText   ="Adicionar ao Carrinho";
-            produtoLi.appendChild(produtoimg);
-            produtoLi.appendChild(mainProduto);
-            mainProduto.appendChild(produtoh3);
-            mainProduto.appendChild(produtoDescricao);
-            mainProduto.appendChild(precoProduto);
-            mainProduto.appendChild(botaoAdicionar);
-            ul0.appendChild(produtoLi);
-        }
-    }
+ //.funcionalidades
+function mostrarTodosProdutos(){
+    const ul          = document.getElementById("todasUl");
+    const buttonTodos = document.getElementById("buttonTodos");
+    buttonTodos.addEventListener("click",function(e){
+      ul.innerText    = "";
+      percorerListProdutos(produtos);
+  
+    })
+};
+mostrarTodosProdutos();
+//------------------------------------
+function mostrarCamisetas(){
+  const ul              = document.getElementById("todasUl");
+  const buttonCamisetas = document.getElementById("camisetas");
+  buttonCamisetas.addEventListener("click",function(){
+    ul.innerText = "";
+    percorerListProdutos(filtrarCamisetas(produtos));
+  })
+};
+ mostrarCamisetas();
+function filtrarCamisetas(arrayDeProdutos) {
+   const camisasFiltradas = arrayDeProdutos.filter(function(produto){
+       return produto.tag == "Camisetas";
+   })
+   return camisasFiltradas
+};
+ //.---------------------------------- 
+function mostrarAcessorios(){
+  const ul               = document.getElementById("todasUl");
+  const buttonAcessorios = document.getElementById("buttonAcessorios");
+  buttonAcessorios.addEventListener("click",function(e){
+     ul.innerText = "";
+     percorerListProdutos(filtrarAcessorios(produtos));
+  });
+};
+mostrarAcessorios();
+function filtrarAcessorios(arrayDeProdutos){
+  const acessoriosFiltrados = arrayDeProdutos.filter(function(produto){
+    return produto.tag == "Acessórios";
+  })
+  return acessoriosFiltrados
+};
+//.-----------------------------------
 
-}
-criarCard(produtos)
-//criar uma figure que ficara dentro da li e a imagem dentro dela 
+function adicionarProdutos(produto){
+ const botaoAdicionar = buttonAdicionar(produto);
+ console.log(botaoAdicionar)
+ botaoAdicionar.addEventListener("click",function(e){
+   console.log(e);
+ })
+};
+adicionarProdutos();
+
+
+
+
+
+
+
+
+
+    
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
