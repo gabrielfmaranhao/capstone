@@ -69,6 +69,7 @@ function percorerListProdutos(arrayDeProdutos){
  function criarLi(produto){
    const liCard = document.createElement("li");
    liCard.classList.add("card");
+   liCard.id      = produto.id
    const ul     = document.getElementById("todasUl");
    ul.appendChild(liCard);
 //-----------------------------------------------------
@@ -183,15 +184,52 @@ function filtrarAcessorios(arrayDeProdutos){
   return acessoriosFiltrados
 };
 //.-----------------------------------
+//.Adicionar ao Carrinho 
 
-function adicionarProdutos(produto){
- const botaoAdicionar = buttonAdicionar(produto);
- console.log(botaoAdicionar)
- botaoAdicionar.addEventListener("click",function(e){
-   console.log(e);
- })
+function adicionarProdutos(arrayDeProdutos){
+  
+  const botaoAdicionar = document.getElementsByClassName("botaoAdicionarCard");
+  const divAdicionandoProdutos = document.getElementById("adicionandoProdutos");
+  const ulCarrinho             = ulCarrinhos();
+  
+  for(let i =0;i<botaoAdicionar.length;i++){
+    botaoAdicionar[i].addEventListener("click",function(){
+      divAdicionandoProdutos.innerText = "";
+      apiCarrinho.push(arrayDeProdutos[i]);
+      console.log(apiCarrinho);
+      const li = criarlipequena(apiCarrinho);
+      ulCarrinho.appendChild(li);
+      divAdicionandoProdutos.append(ulCarrinho);
+   }) 
+ }
+ let apiCarrinho = [];
 };
-adicionarProdutos();
+(adicionarProdutos(produtos));
+
+function ulCarrinhos(array){
+ const ul = document.createElement("ul");
+ 
+
+ return ul
+};
+
+function criarlipequena(array){
+  const li = document.createElement("li");
+  li.classList.add("cardPequeno");
+  // li.id       = array.id;
+  const imagem = imgPequena(array);
+  li.append(imagem);
+  return li
+}
+
+function imgPequena(array){
+  const img = document.createElement("img");
+  img.classList.add("imagemPequena");
+  // img.src   = array.img;
+  return img
+}
+
+
 
 
 
